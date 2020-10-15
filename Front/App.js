@@ -6,8 +6,10 @@ import { Header } from "react-native-elements";
 
 
 export default function App() {
+
+ 
   const handlePress = () => false;
-  console.log("app executed");
+ 
   return (
     <View>
       <Header
