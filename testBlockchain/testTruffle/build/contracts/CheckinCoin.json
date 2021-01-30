@@ -9228,12 +9228,12 @@
         }
       },
       "links": {},
-      "address": "0x63491c5363329afb6f370E9D297025481E0277e6",
-      "transactionHash": "0x62b6505ff52c2aee9e8b2699b1429e9090139af86470f5a219b1c4ee0de3254a"
+      "address": "0x834aDe89F14B5A724cD4beE5c5B5883c65ae46ba",
+      "transactionHash": "0xf5880c8237f182cb026f3c487b9de35bedc4373cfe9b5550f0b9da833953e73d"
     }
   },
   "schemaVersion": "3.3.1",
-  "updatedAt": "2020-11-04T12:56:54.557Z",
+  "updatedAt": "2020-11-19T16:01:57.916Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}

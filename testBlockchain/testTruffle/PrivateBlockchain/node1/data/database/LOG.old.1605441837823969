@@ -1,0 +1,96 @@
+2020/11/15-18:57:37.229438 700001386000 RocksDB version: 6.8.1
+2020/11/15-18:57:37.229501 700001386000 Git sha rocksdb_build_git_sha:27e593fbe10efa5a562ca79b1939ffb69d25163f
+2020/11/15-18:57:37.229504 700001386000 Compile date Apr 26 2020
+2020/11/15-18:57:37.229505 700001386000 DB SUMMARY
+2020/11/15-18:57:37.229709 700001386000 CURRENT file:  CURRENT
+2020/11/15-18:57:37.229711 700001386000 IDENTITY file:  IDENTITY
+2020/11/15-18:57:37.229720 700001386000 MANIFEST file:  MANIFEST-000267 size: 1652 Bytes
+2020/11/15-18:57:37.229722 700001386000 SST files in /Users/akanit/NissanCool/ProjectCE_coin/testBlockchain/testTruffle/PrivateBlockchain/node1/data/database dir, Total Num: 5, files: 000223.sst 000232.sst 000249.sst 000266.sst 000272.sst 
+2020/11/15-18:57:37.229725 700001386000 Write Ahead Log file in /Users/akanit/NissanCool/ProjectCE_coin/testBlockchain/testTruffle/PrivateBlockchain/node1/data/database: 000003.log size: 478508 ; 000031.log size: 649 ; 000047.log size: 1728903 ; 000064.log size: 2544560 ; 000081.log size: 629 ; 000098.log size: 629 ; 000114.log size: 629 ; 000130.log size: 1811 ; 000147.log size: 2371198 ; 000168.log size: 1831 ; 000185.log size: 649 ; 000201.log size: 649 ; 000217.log size: 649 ; 000234.log size: 578927 ; 000251.log size: 3237885 ; 000268.log size: 629 ; 
+2020/11/15-18:57:37.229730 700001386000                         Options.error_if_exists: 0
+2020/11/15-18:57:37.229734 700001386000                       Options.create_if_missing: 1
+2020/11/15-18:57:37.229735 700001386000                         Options.paranoid_checks: 1
+2020/11/15-18:57:37.229735 700001386000                                     Options.env: 0x124b90a48
+2020/11/15-18:57:37.229737 700001386000                                      Options.fs: Posix File System
+2020/11/15-18:57:37.229738 700001386000                                Options.info_log: 0x7f983c3fb310
+2020/11/15-18:57:37.229739 700001386000                Options.max_file_opening_threads: 16
+2020/11/15-18:57:37.229740 700001386000                              Options.statistics: 0x7f983c3f6b10
+2020/11/15-18:57:37.229741 700001386000                               Options.use_fsync: 0
+2020/11/15-18:57:37.229742 700001386000                       Options.max_log_file_size: 0
+2020/11/15-18:57:37.229743 700001386000                  Options.max_manifest_file_size: 1073741824
+2020/11/15-18:57:37.229744 700001386000                   Options.log_file_time_to_roll: 0
+2020/11/15-18:57:37.229744 700001386000                       Options.keep_log_file_num: 1000
+2020/11/15-18:57:37.229745 700001386000                    Options.recycle_log_file_num: 0
+2020/11/15-18:57:37.229746 700001386000                         Options.allow_fallocate: 1
+2020/11/15-18:57:37.229747 700001386000                        Options.allow_mmap_reads: 0
+2020/11/15-18:57:37.229748 700001386000                       Options.allow_mmap_writes: 0
+2020/11/15-18:57:37.229749 700001386000                        Options.use_direct_reads: 0
+2020/11/15-18:57:37.229750 700001386000                        Options.use_direct_io_for_flush_and_compaction: 0
+2020/11/15-18:57:37.229751 700001386000          Options.create_missing_column_families: 1
+2020/11/15-18:57:37.229752 700001386000                              Options.db_log_dir: 
+2020/11/15-18:57:37.229753 700001386000                                 Options.wal_dir: /Users/akanit/NissanCool/ProjectCE_coin/testBlockchain/testTruffle/PrivateBlockchain/node1/data/database
+2020/11/15-18:57:37.229754 700001386000                Options.table_cache_numshardbits: 6
+2020/11/15-18:57:37.229754 700001386000                      Options.max_subcompactions: 1
+2020/11/15-18:57:37.229755 700001386000                  Options.max_background_flushes: -1
+2020/11/15-18:57:37.229756 700001386000                         Options.WAL_ttl_seconds: 0
+2020/11/15-18:57:37.229757 700001386000                       Options.WAL_size_limit_MB: 0
+2020/11/15-18:57:37.229758 700001386000                        Options.max_write_batch_group_size_bytes: 1048576
+2020/11/15-18:57:37.229759 700001386000             Options.manifest_preallocation_size: 4194304
+2020/11/15-18:57:37.229783 700001386000                     Options.is_fd_close_on_exec: 1
+2020/11/15-18:57:37.229785 700001386000                   Options.advise_random_on_open: 1
+2020/11/15-18:57:37.229785 700001386000                    Options.db_write_buffer_size: 0
+2020/11/15-18:57:37.229786 700001386000                    Options.write_buffer_manager: 0x7f983c3fb8d0
+2020/11/15-18:57:37.229787 700001386000         Options.access_hint_on_compaction_start: 1
+2020/11/15-18:57:37.229788 700001386000  Options.new_table_reader_for_compaction_inputs: 0
+2020/11/15-18:57:37.229789 700001386000           Options.random_access_max_buffer_size: 1048576
+2020/11/15-18:57:37.229790 700001386000                      Options.use_adaptive_mutex: 0
+2020/11/15-18:57:37.229791 700001386000                            Options.rate_limiter: 0x0
+2020/11/15-18:57:37.229794 700001386000     Options.sst_file_manager.rate_bytes_per_sec: 0
+2020/11/15-18:57:37.229796 700001386000                       Options.wal_recovery_mode: 2
+2020/11/15-18:57:37.229796 700001386000                  Options.enable_thread_tracking: 0
+2020/11/15-18:57:37.229797 700001386000                  Options.enable_pipelined_write: 0
+2020/11/15-18:57:37.229798 700001386000                  Options.unordered_write: 0
+2020/11/15-18:57:37.229799 700001386000         Options.allow_concurrent_memtable_write: 1
+2020/11/15-18:57:37.229800 700001386000      Options.enable_write_thread_adaptive_yield: 1
+2020/11/15-18:57:37.229801 700001386000             Options.write_thread_max_yield_usec: 100
+2020/11/15-18:57:37.229802 700001386000            Options.write_thread_slow_yield_usec: 3
+2020/11/15-18:57:37.229803 700001386000                               Options.row_cache: None
+2020/11/15-18:57:37.229804 700001386000                              Options.wal_filter: None
+2020/11/15-18:57:37.229805 700001386000             Options.avoid_flush_during_recovery: 0
+2020/11/15-18:57:37.229805 700001386000             Options.allow_ingest_behind: 0
+2020/11/15-18:57:37.229806 700001386000             Options.preserve_deletes: 0
+2020/11/15-18:57:37.229807 700001386000             Options.two_write_queues: 0
+2020/11/15-18:57:37.229808 700001386000             Options.manual_wal_flush: 0
+2020/11/15-18:57:37.229809 700001386000             Options.atomic_flush: 0
+2020/11/15-18:57:37.229810 700001386000             Options.avoid_unnecessary_blocking_io: 0
+2020/11/15-18:57:37.229811 700001386000                 Options.persist_stats_to_disk: 0
+2020/11/15-18:57:37.229812 700001386000                 Options.write_dbid_to_manifest: 0
+2020/11/15-18:57:37.229813 700001386000                 Options.log_readahead_size: 0
+2020/11/15-18:57:37.229814 700001386000                 Options.sst_file_checksum_func: Unknown
+2020/11/15-18:57:37.229815 700001386000             Options.max_background_jobs: 2
+2020/11/15-18:57:37.229816 700001386000             Options.max_background_compactions: 4
+2020/11/15-18:57:37.229816 700001386000             Options.avoid_flush_during_shutdown: 0
+2020/11/15-18:57:37.229817 700001386000           Options.writable_file_max_buffer_size: 1048576
+2020/11/15-18:57:37.229818 700001386000             Options.delayed_write_rate : 16777216
+2020/11/15-18:57:37.229819 700001386000             Options.max_total_wal_size: 0
+2020/11/15-18:57:37.229820 700001386000             Options.delete_obsolete_files_period_micros: 21600000000
+2020/11/15-18:57:37.229821 700001386000                   Options.stats_dump_period_sec: 600
+2020/11/15-18:57:37.229822 700001386000                 Options.stats_persist_period_sec: 600
+2020/11/15-18:57:37.229823 700001386000                 Options.stats_history_buffer_size: 1048576
+2020/11/15-18:57:37.229824 700001386000                          Options.max_open_files: 1024
+2020/11/15-18:57:37.229825 700001386000                          Options.bytes_per_sync: 0
+2020/11/15-18:57:37.229826 700001386000                      Options.wal_bytes_per_sync: 0
+2020/11/15-18:57:37.229829 700001386000                   Options.strict_bytes_per_sync: 0
+2020/11/15-18:57:37.229829 700001386000       Options.compaction_readahead_size: 0
+2020/11/15-18:57:37.229845 700001386000 Compression algorithms supported:
+2020/11/15-18:57:37.229849 700001386000 	kZSTD supported: 1
+2020/11/15-18:57:37.229850 700001386000 	kZlibCompression supported: 1
+2020/11/15-18:57:37.229851 700001386000 	kXpressCompression supported: 0
+2020/11/15-18:57:37.229852 700001386000 	kSnappyCompression supported: 1
+2020/11/15-18:57:37.229853 700001386000 	kZSTDNotFinalCompression supported: 1
+2020/11/15-18:57:37.229854 700001386000 	kLZ4HCCompression supported: 1
+2020/11/15-18:57:37.229855 700001386000 	kLZ4Compression supported: 1
+2020/11/15-18:57:37.229856 700001386000 	kBZip2Compression supported: 1
+2020/11/15-18:57:37.229861 700001386000 Fast CRC32 supported: Not supported on x86
+2020/11/15-18:57:37.229981 700001386000 [_impl/db_impl.cc:397] Shutdown: canceling all background work
+2020/11/15-18:57:37.230007 700001386000 [_impl/db_impl.cc:573] Shutdown complete
