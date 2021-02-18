@@ -8,16 +8,30 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@react-native-community/google-signin": "^5.0.0",
     "@react-native-community/masked-view": "^0.1.10",
+<<<<<<< HEAD
+    "axios": "^0.21.1",
+=======
+    "bootstrap": "^4.6.0",
+>>>>>>> ee133ec6f802300f1be123e553a2887c76eb2813
     "expo": "~40.0.0",
     "expo-status-bar": "~1.0.3",
+    "prop-type": "0.0.1",
+    "proptype": "^1.0.0",
     "react": "16.13.1",
+    "react-bootstrap": "^1.4.3",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz",
     "react-native-gesture-handler": "~1.8.0",
     "react-native-reanimated": "~1.13.0",
     "react-native-safe-area-context": "^3.1.9",
     "react-native-screens": "~2.15.0",
+<<<<<<< HEAD
+    "react-native-social-buttons": "^1.2.0",
+=======
+    "react-native-vector-icons": "^8.0.0",
+>>>>>>> ee133ec6f802300f1be123e553a2887c76eb2813
     "react-native-web": "~0.13.12",
     "react-navigation": "^4.4.3",
     "react-navigation-stack": "^2.10.2"

@@ -252,5 +252,5 @@ abi = [
     "type": "function"
   }
 ];
-  const contract_address = "0x834aDe89F14B5A724cD4beE5c5B5883c65ae46ba"
+  const contract_address = "0x619A83c9368aDa9fFb98c3F14b662724dD19E943"
   module.exports = {abi,contract_address};

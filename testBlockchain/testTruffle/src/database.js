@@ -1,6 +1,6 @@
 let mongoose = require('mongoose');
 
-const server = 'mongodb+srv://sanstar03:c0874419271@cluster0.ifent.mongodb.net/User_Cecoin?retryWrites=true&w=majority'; // REPLACE WITH YOUR DB SERVER
+const server = 'mongodb+srv://sanstar03:c0874419271@cluster0.ifent.mongodb.net/User_Cecoin?retryWrites=true'; // REPLACE WITH YOUR DB SERVER
 const database = 'cluster0';
 
 class Database {

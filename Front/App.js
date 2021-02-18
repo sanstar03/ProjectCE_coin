@@ -1,20 +1,32 @@
-import { SplashScreen } from 'expo';
+
 import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
+import { createStackNavigator, HeaderBackground } from 'react-navigation-stack';
 import HomeScreen from './src/screens/HomeScreen';
 import RealHomeScreen from './src/screens/RealHomeScreen';
 import Splash from './src/screens/Splash';
+import Transfer from './src/screens/TransferScreen';
+import CreateAc from './src/screens/CreateAc';
+
 
 const navigator = createStackNavigator(
   {
     Home: HomeScreen,
     Real: RealHomeScreen,
-    Sp : Splash
+    Sp : Splash,
+    Tran : Transfer,
+    CreateAc : CreateAc
   },
   {
-    initialRouteName: 'Sp',
+    initialRouteName: 'Home',
     defaultNavigationOptions: {
-      title: 'App',
+      title: 'CE COIN',
+      headerStyle: {
+        backgroundColor: '#333333',
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
     },
   }
 );
