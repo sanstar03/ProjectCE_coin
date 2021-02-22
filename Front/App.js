@@ -6,7 +6,8 @@ import RealHomeScreen from './src/screens/RealHomeScreen';
 import Splash from './src/screens/Splash';
 import Transfer from './src/screens/TransferScreen';
 import CreateAc from './src/screens/CreateAc';
-
+import TeacherHome from './src/screens/TeacherHome';
+import Signup from './src/screens/Signup';
 
 const navigator = createStackNavigator(
   {
@@ -14,7 +15,9 @@ const navigator = createStackNavigator(
     Real: RealHomeScreen,
     Sp : Splash,
     Tran : Transfer,
-    CreateAc : CreateAc
+    CreateAc : CreateAc,
+    THome : TeacherHome,
+    Signup : Signup
   },
   {
     initialRouteName: 'Sp',

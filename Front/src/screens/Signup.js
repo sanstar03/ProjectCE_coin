@@ -1,16 +1,24 @@
 import React from "react";
 import { Text, StyleSheet, View,TouchableOpacity,TextInput} from "react-native";
 
-const HomeScreen = props => {
+const Signup = props => {
 
 
   return (
   <View style={styles.viewStyle}>
-    <Text style={styles.text}>CE COIN</Text>
+    <Text style={styles.text}>CREATE ACCOUNT</Text>
     <View style={styles.InputflexStyle}>
      <TextInput
       style={styles.InputStyle}
       placeholder="Please Enter ID"
+    />
+    <TextInput
+      style={styles.InputStyle}
+      placeholder="Please Enter First Name"
+    />
+    <TextInput
+      style={styles.InputStyle}
+      placeholder="Please Enter Last Name"
     />
     <TextInput
       style={styles.InputStyle}
@@ -20,18 +28,9 @@ const HomeScreen = props => {
     <View style={styles.loginScreenButton}>
     <TouchableOpacity 
     style={styles.buttonStyle}
-    onPress={() => props.navigation.navigate('Real')}
+    onPress={() => props.navigation.navigate('Home')}
     >
-    <Text style={styles.Buttontext}>Student Login</Text>
-    </TouchableOpacity>
-    </View>
-
-    <View style={styles.loginScreenButton}>
-    <TouchableOpacity 
-    style={styles.buttonStyle}
-    onPress={() => props.navigation.navigate('THome')}
-    >
-    <Text style={styles.Buttontext}>Teacher Login</Text>
+    <Text style={styles.Buttontext}>Sign Up</Text>
     </TouchableOpacity>
     </View>
     
@@ -61,7 +60,7 @@ const styles = StyleSheet.create({
     margin: 10
   },
   InputflexStyle:{
-    width: "80%", 
+    width: "90%", 
     margin: 10
   },
   viewStyle: {
@@ -73,13 +72,10 @@ const styles = StyleSheet.create({
     backgroundColor:'#fff'
     },
     text: {
-      fontSize: 48 ,
+      fontSize: 32 ,
       margin: 5,
       textAlign: "center",
       fontWeight : 'bold',
-      textShadowOffset: { width: 2, height: 2 },
-      textShadowRadius: 1,
-      textShadowColor: 'rgba(0, 0, 0, 0.25)'
     },
   Buttontext: {
     fontSize: 16 ,
@@ -90,4 +86,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default HomeScreen;
+export default Signup;
