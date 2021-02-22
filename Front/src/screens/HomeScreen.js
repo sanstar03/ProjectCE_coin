@@ -49,35 +49,35 @@ const HomeScreen = ({navigation}) => {
   };
 
   return (
-    <View style={styles.viewStyle}>
-      <Text style={styles.text}>CE COIN</Text>
-      <View style={styles.InputflexStyle}>
-        <TextInput
-          style={styles.InputStyle}
-          placeholder="Please Enter ID"
-          value={username}
-          onChangeText={(username) => setusername(username)}
-          onChange={() => setusernameError("")}
-        />
+  <View style={styles.viewStyle}>
+    <Text style={styles.text}>CE COIN</Text>
+    <View style={styles.InputflexStyle}>
+     <TextInput
+      style={styles.InputStyle}
+      placeholder="Please Enter ID"
+    />
+    <TextInput
+      style={styles.InputStyle}
+      placeholder="Please Enter Password"
+    />
+    </View>
+    <View style={styles.loginScreenButton}>
+    <TouchableOpacity 
+    style={styles.buttonStyle}
+    onPress={signin}
+    >
+    <Text style={styles.Buttontext}>Student Login</Text>
+    </TouchableOpacity>
+    </View>
 
-        <TextInput
-          style={styles.InputStyle}
-          placeholder="Please Enter Password"
-          value={password}
-          onChangeText={(password) => setpassword(password)}
-          onChange={() => setpasswordError("")}
-          secureTextEntry={true}
-        />
-      </View>
-
-      <View style={styles.loginScreenButton}>
-        <TouchableOpacity
-          style={styles.buttonStyle}
-          onPress={signin}
-        >
-          <Text style={styles.Buttontext}>Next</Text>
-        </TouchableOpacity>
-      </View>
+    <View style={styles.loginScreenButton}>
+    <TouchableOpacity 
+    style={styles.buttonStyle}
+    onPress={() => props.navigation.navigate('THome')}
+    >
+    <Text style={styles.Buttontext}>Teacher Login</Text>
+    </TouchableOpacity>
+    </View>
     </View>
   );
 };

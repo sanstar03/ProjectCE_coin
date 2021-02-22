@@ -2,12 +2,12 @@ import React from "react";
 import { Text, StyleSheet, TouchableOpacity,View } from "react-native";
 import { FontAwesome5,MaterialIcons  } from '@expo/vector-icons';
 
-const RealHomeScreen = props => {
+const TeacherHome = props => {
   const Amount ='200';
     return   ( 
   <View style={styles.viewStyle}>
           <View style={styles.viewStyle1}>
-            <Text style={styles.text}>HELLO! NATTHAPHONG :D</Text>
+            <Text style={styles.text}>HELLO! T.ABCD :D</Text>
            </View>
 
            <View style={styles.viewStyle2}>
@@ -18,41 +18,24 @@ const RealHomeScreen = props => {
            <TouchableOpacity style={styles.buttonShadow} >
            <MaterialIcons.Button name="account-box"color='#9B9B9B'style={styles.buttonStyle}>
           <Text style={styles.Buttontext1}>Account</Text> 
-           </MaterialIcons.Button>
+          </MaterialIcons.Button>
           </TouchableOpacity>
            </View>
            </View>
 
-           <View style={styles.viewButton}>  
-           <View style={styles.MenuButton}>
-           <TouchableOpacity style={styles.buttonShadow} >
-            <FontAwesome5.Button name="gift"color='#fff' style={styles.buttonStyle1} onPress={() => props.navigation.navigate('Tran')}>
-            <Text style={styles.Buttontext}>Reward</Text>
-            </FontAwesome5.Button>
-                </TouchableOpacity>
-           </View>
-           <View style={styles.MenuButton}>
-           <TouchableOpacity style={styles.buttonShadow}>
-            <FontAwesome5.Button name="exchange-alt"color='#fff' style={styles.buttonStyle2} onPress={() => props.navigation.navigate('Tran')}>
-            <Text style={styles.Buttontext}>Transfer</Text>
-            </FontAwesome5.Button>
-                </TouchableOpacity>
-           </View>
-           <View style={styles.MenuButton} >
-           <TouchableOpacity style={styles.buttonShadow} >
-            <FontAwesome5.Button name="camera"color='#fff' style={styles.buttonStyle3} >
-            <Text style={styles.Buttontext}>Check-in</Text>
-            </FontAwesome5.Button>
-                </TouchableOpacity>
-           </View>
+           <View style={styles.viewStyle4}>
+           <TouchableOpacity style={styles.buttonS} onPress={() => props.navigation.navigate('CreateAc')} >
+          <Text style={styles.Buttontext}>Create Activity</Text> 
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.buttonS} >
+          <Text style={styles.Buttontext}>Create QR Code</Text> 
+          </TouchableOpacity>
 
            </View>
-          
-            <View style={styles.viewStyle1}><Text style={styles.text}>Activity for you</Text></View>
-            <View style={styles.viewStyle3}><Text style={styles.text1}>Activity Coming Soon</Text></View>
-            <View style={styles.viewStyle3}><Text style={styles.text1}>Activity Coming Soon</Text></View>
-            <View style={styles.viewStyle3}><Text style={styles.text1}>Activity Coming Soon</Text></View>
-            <View style={styles.viewStyle3}><Text style={styles.text1}>Activity Coming Soon</Text></View>
+
+           
+    
           </View>
 
       )
@@ -84,6 +67,10 @@ const RealHomeScreen = props => {
       height : "10%",
       margin : 10,
     },
+    viewStyle4:{
+        height : "19%",
+        margin : 15,
+      },
     viewButton:{
       alignItems: 'center',
       flexDirection: 'row',
@@ -105,6 +92,15 @@ const RealHomeScreen = props => {
       shadowRadius: 1 ,
       shadowOffset : { width: 2, height: 2 }
     },
+    buttonS:{
+        borderRadius: 6,
+        shadowColor: 'rgba(0, 0, 0, 0.1)',
+        shadowOpacity: 0.8,
+        shadowRadius: 1 ,
+        shadowOffset : { width: 2, height: 2 },
+        backgroundColor:'#FF6838',
+        margin: 10
+      },
     buttonStyle:{ backgroundColor:'#fff',},
     buttonStyle1:{backgroundColor:'#FF6838'},
     buttonStyle2:{backgroundColor:'#FFA133'},
@@ -119,11 +115,11 @@ const RealHomeScreen = props => {
       fontSize: 25,color: "#fff",marginTop : 5,marginRight : 15
     },
     Buttontext: {
-      fontSize: 14,marginRight: 8,textAlign: "center",fontWeight : 'bold',color : "#fff"
+      fontSize: 18,margin: 10,textAlign: "center",fontWeight : 'bold',color : "#fff"
     },
     Buttontext1: {
       fontSize: 16 ,marginLeft: 16,textAlign: "center",fontWeight : 'bold',color : "#9B9B9B"
     }
   });
   
-  export default RealHomeScreen;
+  export default TeacherHome;
