@@ -14,11 +14,11 @@ const RealHomeScreen = props => {
            <Text style={styles.textcard}>{Amount}</Text>
            <Text style={styles.textcard}>Reward Coin</Text>
 
-           <View style={styles.loginScreenButton}>
-             
+           <View style={styles.loginScreenButton}> 
            <TouchableOpacity style={styles.buttonShadow} >
            <MaterialIcons.Button name="account-box"color='#9B9B9B'style={styles.buttonStyle}>
-          <Text style={styles.Buttontext1}>Account</Text> </MaterialIcons.Button>
+          <Text style={styles.Buttontext1}>Account</Text> 
+           </MaterialIcons.Button>
           </TouchableOpacity>
            </View>
            </View>

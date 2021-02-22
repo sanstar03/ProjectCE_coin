@@ -20,7 +20,7 @@ const navigator = createStackNavigator(
     Signup : Signup
   },
   {
-    initialRouteName: 'Sp',
+    initialRouteName: 'Real',
     defaultNavigationOptions: {
       title: 'CE COIN',
       headerStyle: {
