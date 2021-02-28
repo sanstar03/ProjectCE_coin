@@ -1,15 +1,16 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Text,
   StyleSheet,
   View,
   TouchableOpacity,
   TextInput,
-  Alert
+  Alert,
+
 } from "react-native";
 import axios from "axios";
 
-const HomeScreen = ({navigation}) => {
+const HomeScreen = ({ navigation }) => {
   // State set for username
   const [username, setusername] = useState("");
   const [usernameError, setusernameError] = useState("");
@@ -17,67 +18,67 @@ const HomeScreen = ({navigation}) => {
   // State set for password
   const [password, setpassword] = useState("");
   const [passwordError, setpasswordError] = useState("");
-  
+
+  const [error,setError] = useState("");
+
   //about token
-  
 
   //signin function
+  //signin function
   const signin = async () => {
-
     if (username != "" && password != "") {
       const user = {
-        username:username,
-        password:password
+        "username": username,
+        "password": password,
       }
-      axios.post('http://127.0.0.1:8000/api/login',user).then(response=>{
-        navigation.navigate("Real")
-        console.log(response)
-        // try{
-        //   navigation.navigate("Real")
-        // }catch(e){
-        //   return res.send({
-        //     status:400,
-        //     message:'Something went wrong'
-        //   }).then(()=>Alert.alert('Invalid Usernam and Password',[{text:'Ok'}]))
+      axios
+        .post("http://127.0.0.1:8000/api/login", user)
+        .then((response) => {
+            navigation.navigate("Real");
+            console.log(Response.message)
           
-        // }
-      }).catch(()=> {
-        
-        Alert.alert('Invalid Usernam and Password',[{text:'Ok'}]);
-      })
+          // navigation.navigate("Real");
+          // try{
+          //   navigation.navigate("Real")
+          // }catch(e){
+          //   Alert.alert("Error please try again.",[{text:'Ok'}])
+          // }
+        }).catch(e => {
+          Alert.alert("Error :","username or password is invalid .",[{text:'Ok'}])
+        })
     }
   };
 
   return (
-  <View style={styles.viewStyle}>
-    <Text style={styles.text}>CE COIN</Text>
-    <View style={styles.InputflexStyle}>
-     <TextInput
-      style={styles.InputStyle}
-      placeholder="Please Enter ID"
-    />
-    <TextInput
-      style={styles.InputStyle}
-      placeholder="Please Enter Password"
-    />
-    </View>
-    <View style={styles.loginScreenButton}>
-    <TouchableOpacity 
-    style={styles.buttonStyle}
-    onPress={signin}
-    >
-    <Text style={styles.Buttontext}>Student Login</Text>
-    </TouchableOpacity>
-    </View>
+    <View style={styles.viewStyle}>
+      <Text style={styles.text}>CE COIN</Text>
+      <View style={styles.InputflexStyle}>
+        <TextInput
+          style={styles.InputStyle}
+          placeholder="Please Enter ID"
+          value={username}
+          onChangeText={(username) => setusername(username)}
+          onChange={() => setusernameError("")}
+        />
+        <TextInput
+          style={styles.InputStyle}
+          placeholder="Please Enter Password"
+          value={password}
+          onChangeText={(password) => setpassword(password)}
+          onChange={() => setpasswordError("")}
+        />
+      </View>
+      <View style={styles.loginScreenButton}>
+        <TouchableOpacity style={styles.buttonStyle} onPress={signin}>
+          <Text style={styles.Buttontext}>Student Login</Text>
+        </TouchableOpacity>
+      </View>
 
-    <View style={styles.loginScreenButton}>
-    <TouchableOpacity 
-    style={styles.buttonStyle}
-    onPress={() => props.navigation.navigate('THome')}
-    >
-    <Text style={styles.Buttontext}>Teacher Login</Text>
-    </TouchableOpacity>
-    </View>
+      <View style={styles.loginScreenButton}>
+        <TouchableOpacity style={styles.buttonStyle} onPress={signin}>
+          <Text style={styles.Buttontext}>Teacher Login</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };

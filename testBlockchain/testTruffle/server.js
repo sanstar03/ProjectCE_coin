@@ -1,3 +1,4 @@
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const router = express.Router();
@@ -12,6 +13,7 @@ const dotenv = require('dotenv')
 const contract = {
     c: contract_C
 }
+
 dotenv.config();
 app.use(cors());
 require("./src/database");
@@ -41,6 +43,7 @@ router.route('/login').post((req,res)=>{
         }
         const user = ret[0].username;
         const token = jwt.sign({_id:user._id},process.env.TOKEN_SECRET);
+        // await AsyncStorage.setItem('token', response.data.token);
         res.header('auth-token',token).send(token);
         // res.json({status:200,
         // message:"login success"}) 

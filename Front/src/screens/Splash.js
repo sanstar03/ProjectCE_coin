@@ -17,7 +17,7 @@ const SplashScreen = ( {navigation}) =>{
 const styles = StyleSheet.create({
 image: {
   height: '100%',
-  weight: '100%',
+  width: '100%',
   flex: 1 
 }
 });

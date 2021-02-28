@@ -1,5 +1,5 @@
 
-import { createAppContainer } from 'react-navigation';
+import { createAppContainer,CreateBottomTabNavigator,createSwitchNavigator} from 'react-navigation';
 import { createStackNavigator, HeaderBackground } from 'react-navigation-stack';
 import HomeScreen from './src/screens/HomeScreen';
 import RealHomeScreen from './src/screens/RealHomeScreen';
@@ -34,4 +34,24 @@ const navigator = createStackNavigator(
   }
 );
 
+const switchNavigator = createSwitchNavigator({
+  loginflow:createStackNavigator({
+    Su:Signup,
+    Si:HomeScreen,
+  }),
+  mainflow:createStackNavigator({
+    Tran : Transfer,
+    CreateAc : CreateAc,
+    THome : TeacherHome,
+    Real: RealHomeScreen
+  })
+
+});
+
+
 export default createAppContainer(navigator);
+
+
+
+
+
