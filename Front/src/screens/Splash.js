@@ -4,7 +4,7 @@ import React,{ useEffect } from "react";
 
 const SplashScreen = ( {navigation}) =>{
     useEffect(() => {
-        setTimeout(() => navigation.navigate('Signup'), 2000)
+        setTimeout(() => navigation.navigate('Real'), 2000)
       }, [])
 
   return  (

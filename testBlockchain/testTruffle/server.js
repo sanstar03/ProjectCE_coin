@@ -5,50 +5,90 @@ const router = express.Router();
 const cors = require('cors');
 const app = express();
 const web3 = require('./web3');
-const { abi, address, contract_address } = require('./abi')
+const { abi, contract_address } = require('./abi')
 const jwt = require('jsonwebtoken');
 const contract_C = new web3.eth.Contract(abi, contract_address);
-const authroute = require('./routes/auth');
+// const authroute = require('./routes/auth');
 const dotenv = require('dotenv')
 const contract = {
     c: contract_C
 }
+const reqAuth = require('./middlewares/reqAuth')
 
 dotenv.config();
 app.use(cors());
-require("./src/database");
+require("./db/database");
 app.use('/api', bodyParser.json(), router);
 app.use('/api', bodyParser.urlencoded({ extended: false }), router);
 
 require('./routes/createUser')({ router, web3 });
 require('./routes/transfer')({ router, contract });
-
+require('./routes/checkin')({router,contract})
 const User = require('./model/userModel');
-const loginValidation = require ('./validation')
+// const loginValidation = require ('./validation')
 
 const crypto = require('./routes/cryptography1');
 
 
-router.route('/login').post((req,res)=>{
-        User.find({
-        username:req.body.username
-        }).then(ret => {
-        try{
-        let decryptedPrivateKey = crypto.decrypt(JSON.parse(ret[0].privateKey),req.body.password);
-        decryptedPrivateKey = decryptedPrivateKey.substring(2, decryptedPrivateKey.length);
-        }catch(e){
-                return res.status(400).json({
-                        error:"Invalid password."
-                })
+router.route('/login').post(async (req,res)=>{
+        const {username,password} = req.body
+
+        if (!username || !password){
+                return res.status(422).send(err,'Must provide username and password');
         }
-        const user = ret[0].username;
-        const token = jwt.sign({_id:user._id},process.env.TOKEN_SECRET);
-        // await AsyncStorage.setItem('token', response.data.token);
-        res.header('auth-token',token).send(token);
-        // res.json({status:200,
-        // message:"login success"}) 
-        })
+
+        const user = await User.findOne({username});
+        if(!user){      
+                return res.status(404).send({error:'user not found'});
+        }
+        try{
+                let decryptedPrivateKey = crypto.decrypt(JSON.parse(user.privateKey),req.body.password);
+                decryptedPrivateKey = decryptedPrivateKey.substring(2, decryptedPrivateKey.length);
+                // const token = jwt.sign({userId:user._id},'kpkjriosjdjkvndjsia');
+                // res.send(token);
+                const token = jwt.sign({userId:user._id},'kpkjriosjdjkvndjsia');
+                res.send({token});
+        }catch(e){
+                return res.status(422).send({error:'Invalid password .'});
+        }
+        
+        // User.findOne({
+        // username:req.body.username
+        // })
+        // .then(ret => {
+        // try{
+        // let decryptedPrivateKey = crypto.decrypt(JSON.parse(user.privateKey),req.body.password);
+        // decryptedPrivateKey = decryptedPrivateKey.substring(2, decryptedPrivateKey.length);
+        // const user = ret[0].username;
+        // const token = jwt.sign({userId:user._id},'kpkjriosjdjkvndjsia');
+        // res.send(token);
+        // }catch(e){
+        //         return res.status(400).json({
+        //                 error:"Invalid password."
+        //         })
+        // }
+        
+        // // await AsyncStorage.setItem('token', response.data.token);
+        
+        // // res.json({status:200,
+        // // message:"login success"}) 
+        // })
 })
+
+router.route('/getUser').get(reqAuth,(req,res)=>{
+        res.send(`HELLO! ${req.user.firstname}`);
+})
+
+router.route('/getBalance').get(reqAuth,(req,res)=>{
+        contract_C.methods.balanceOf(`${req.user.address}`).call().then(bal => res.send(bal))
+})
+
+router.route('/balanceTest').get((req,res)=>{
+        // console.log(contract_C)
+        contract_C.methods.balanceOf(req.body.address).call().then(bal => res.send(bal))
+})
+
+
 
 
         //password check

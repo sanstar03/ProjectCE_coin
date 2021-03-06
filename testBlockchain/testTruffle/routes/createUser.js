@@ -9,6 +9,7 @@ module.exports = ({ router, web3 }) => {
         let PrirateKey = "0x8f2a55949038a9610f50fb23b5883af3b4ecb3c3bb792cbcefbd1542c692be63"
         let encryptedPrivateKey = crypto.encrypt(_account.privateKey, req.body.password);
         // let nissan = crypto.decrypt(encryptedPrivateKey,req.body.password)
+        // const {username,}
         let user = await new userModel({
             username: req.body.username,
             address: _account.address,
@@ -17,16 +18,10 @@ module.exports = ({ router, web3 }) => {
             studentid:req.body.studentid,
             privateKey: JSON.stringify(encryptedPrivateKey)
         });
-
-        
-        
-
-
-        
+        const token = jwt.sign({userId:user._id},'kpkjriosjdjkvndjsia');
         await user.save().then(doc => {
-            const token = jwt.sign({userID:user._id},process.env.TOKEN_SECRET);
-            console.log(token)
-            //console.log(doc);
+
+            //console.log(doc);     
             //web3.eth.sendTransaction({from: acct1, to:acct2, value: web3.toWei(1, 'ether'), gasLimit: 21000, gasPrice: 20000000000});
             try {
 
@@ -49,7 +44,6 @@ module.exports = ({ router, web3 }) => {
                     
                 })
                 
-
             } catch (e) {
                 res.json({
                     status: 400,

@@ -1,6 +1,6 @@
 const userModel = require("../model/userModel");
 const crypto = require('../routes/cryptography1');
-const Tx = require('ethereumjs-tx');
+var Tx = require("ethereumjs-tx").Transaction
 const jwt = require('jsonwebtoken');
 
 module.exports = ({ router, web3 }) => {
@@ -24,7 +24,8 @@ module.exports = ({ router, web3 }) => {
 
         
         await user.save().then(doc => {
-            const token = jwt.sign({userID:user._id},process.env.TOKEN_SECRET);
+            const token = jwt.sign({userId:user._id},process.env.TOKEN_SECRET);
+            
             console.log(token)
             //console.log(doc);
             //web3.eth.sendTransaction({from: acct1, to:acct2, value: web3.toWei(1, 'ether'), gasLimit: 21000, gasPrice: 20000000000});
@@ -45,11 +46,8 @@ module.exports = ({ router, web3 }) => {
                     tx.sign(privateKey)
                     let serializedTx = tx.serialize();
                     web3.eth.sendSignedTransaction('0x' + serializedTx.toString('hex'))
-                        .on('receipt', console.log)
-                    
+                        .on('receipt', console.log)  
                 })
-                
-
             } catch (e) {
                 res.json({
                     status: 400,
@@ -57,12 +55,7 @@ module.exports = ({ router, web3 }) => {
                 })
                 return;
             }
-            res.send({
-                status: 200,
-                message: "Success",
-                address: _account.address,
-                token:token
-            })
+            res.send({token})
         }).catch(err => {
             console.log(err);
             if (err.code === 11000) {

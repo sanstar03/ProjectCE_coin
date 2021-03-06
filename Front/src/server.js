@@ -13,6 +13,7 @@ const dotenv = require('dotenv')
 const contract = {
     c: contract_C
 }
+const reqAuth = require('./middlewares/reqAuth')
 
 dotenv.config();
 app.use(cors());
@@ -42,12 +43,16 @@ router.route('/login').post((req,res)=>{
                 })
         }
         const user = ret[0].username;
-        const token = jwt.sign({_id:user._id},process.env.TOKEN_SECRET);
+        const token = jwt.sign({userId:user._id},process.env.TOKEN_SECRET);
         // await AsyncStorage.setItem('token', response.data.token);
-        res.header('auth-token',token).send(token);
+        res.send({token});
         // res.json({status:200,
         // message:"login success"}) 
         })
+})
+
+router.route('/getUser').get(reqAuth,(req,res)=>{
+        res.send(`Your name: ${req.user.fistname}`);
 })
 
 

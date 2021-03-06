@@ -2,5 +2,5 @@
 const CheckinCoin = artifacts.require("CheckinCoin");
 
 module.exports = function (deployer) {
-  deployer.deploy(CheckinCoin,100)
+  deployer.deploy(CheckinCoin,100000000)
 };

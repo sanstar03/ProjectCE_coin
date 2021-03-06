@@ -9,6 +9,8 @@ import {
 
 } from "react-native";
 import axios from "axios";
+import AsyncStorage from '@react-native-community/async-storage';
+
 
 const HomeScreen = ({ navigation }) => {
   // State set for username
@@ -33,10 +35,10 @@ const HomeScreen = ({ navigation }) => {
       }
       axios
         .post("http://127.0.0.1:8000/api/login", user)
-        .then((response) => {
+        .then(async (response) => {
+            await AsyncStorage.setItem('token', response.data.token);
+            console.log(response.data.token)
             navigation.navigate("Real");
-            console.log(Response.message)
-          
           // navigation.navigate("Real");
           // try{
           //   navigation.navigate("Real")
@@ -44,7 +46,11 @@ const HomeScreen = ({ navigation }) => {
           //   Alert.alert("Error please try again.",[{text:'Ok'}])
           // }
         }).catch(e => {
-          Alert.alert("Error :","username or password is invalid .",[{text:'Ok'}])
+          console.log(e.message)
+          Alert.alert("Error :","something went wrong.",[{text:'Ok'}])
+          
+
+
         })
     }
   };
