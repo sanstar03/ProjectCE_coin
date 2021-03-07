@@ -1,8 +1,9 @@
-import React from "react";
-import { Text, StyleSheet, View,TouchableOpacity,TextInput } from "react-native";
+import React ,{ useState } from "react";
+import { Text, StyleSheet, View,TouchableOpacity,TextInput,Picker } from "react-native";
 
 const CreateAc = props => {
   const ID = '60010317';
+  const [selectedValue, setSelectedValue] = useState("java");
     return (
         <View style={styles.viewStyle}>
 
@@ -23,7 +24,17 @@ const CreateAc = props => {
           <View style={styles.viewStyle1}>
           <Text style={styles.text1}>Subject</Text>
           <View style={styles.InputflexStyle}>
-         <TextInput style={styles.InputStyle} placeholder="Input Subject"/>
+          <Picker
+        selectedValue={selectedValue}
+        onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+        style={styles.InputStyle}
+      >
+        <Picker.Item style={styles.text2} label="Data Communication" value="Data_Com" />
+        <Picker.Item style={styles.text2} label="Data Mining" value="Data_Struc" />
+        <Picker.Item style={styles.text2} label="System Admin Platform" value="Data_Struc" />
+        <Picker.Item style={styles.text2} label="Data Structure" value="Data_Struc" />
+        <Picker.Item style={styles.text2} label="Data Anlysis" value="Data_Struc" />
+      </Picker>
          </View>
           </View>
 
@@ -44,6 +55,7 @@ const CreateAc = props => {
               </View>
               
           </View>
+
           <View style={styles.viewStyle1}>
           <Text style={styles.text1}>Class Activity Coin Reward</Text>
           <View style={styles.InputflexStyle}>
@@ -58,9 +70,9 @@ const CreateAc = props => {
         <TouchableOpacity style={styles.buttonStyle} >
           <Text style={styles.Buttontext}>Confirm</Text>
           </TouchableOpacity>
-           </View> </View>
-
-    </View>
+           </View>
+            </View>
+               </View>
     );
   };
   
@@ -124,6 +136,9 @@ const CreateAc = props => {
     },
     text1: {
       fontSize: 18,fontWeight : 'bold',color: "#464646", marginTop : 10 
+    },
+    text2: {
+      fontSize: 12,color: "#464646",
     },
     NextButton:{
         width: "40%", margin: 10

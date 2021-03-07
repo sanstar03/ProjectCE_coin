@@ -3,6 +3,7 @@ import { Text, StyleSheet, TouchableOpacity, View } from "react-native";
 import { FontAwesome5, MaterialIcons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-community/async-storage";
 import axios from "axios";
+import { Entypo } from '@expo/vector-icons'; 
 import { set } from "mongoose";
 const RealHomeScreen = (props) => {
   const Amount = "200";
@@ -81,7 +82,7 @@ getBalance();
           </TouchableOpacity>
         </View>
         <View style={styles.MenuButton}>
-          <TouchableOpacity style={styles.buttonShadow} onPress={() => getName}>
+          <TouchableOpacity style={styles.buttonShadow}>
             <FontAwesome5.Button
               name="camera"
               color="#fff"
@@ -94,20 +95,24 @@ getBalance();
       </View>
 
       <View style={styles.viewStyle1}>
-        <Text style={styles.text}>Activity for you</Text>
+        <Text style={styles.text}>Your Course</Text>
       </View>
-      <View style={styles.viewStyle3}>
-        <Text style={styles.text1}>Activity Coming Soon</Text>
-      </View>
-      <View style={styles.viewStyle3}>
-        <Text style={styles.text1}>Activity Coming Soon</Text>
-      </View>
-      <View style={styles.viewStyle3}>
-        <Text style={styles.text1}>Activity Coming Soon</Text>
-      </View>
-      <View style={styles.viewStyle3}>
-        <Text style={styles.text1}>Activity Coming Soon</Text>
-      </View>
+      <TouchableOpacity style={styles.viewStyle3}>
+        <Text style={styles.Buttontext2}>Data Structure 2021</Text>
+        <Entypo name="triangle-right" style={styles.iconstyle}/>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.viewStyle3}>
+        <Text style={styles.Buttontext2}>Data Communication 2021</Text>
+        <Entypo name="triangle-right" style={styles.iconstyle}/>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.viewStyle3}>
+        <Text style={styles.Buttontext2}>UX UI 2021</Text>
+        <Entypo name="triangle-right" style={styles.iconstyle}/>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.viewStyle3}>
+        <Text style={styles.Buttontext2}>Database 2021</Text>
+        <Entypo name="triangle-right" style={styles.iconstyle}/>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -117,7 +122,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     justifyContent: "flex-start",
-    backgroundColor: "#fff",
+    backgroundColor: "#FCFCFC",
   },
   viewStyle1: {
     marginLeft: 15,
@@ -134,15 +139,25 @@ const styles = StyleSheet.create({
     margin: 15,
   },
   viewStyle3: {
-    backgroundColor: "#F8F8F8",
-    height: "10%",
-    margin: 10,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#fff",
+    height: "8%",
+    marginRight: 15,
+    marginLeft: 15,
+    marginTop: 10,
+    marginBottom: 10,
+    borderRadius : 6,
+    flexDirection:'row',
+    shadowColor: "rgba(0, 0, 0, 0.1)",
+    shadowOpacity: 0.8,
+    shadowRadius: 1,
+    shadowOffset: { width: 2, height: 2 },
   },
   viewButton: {
     alignItems: "center",
     flexDirection: "row",
     justifyContent: "center",
-    backgroundColor: "#fff",
   },
   loginScreenButton: {
     width: "42%",
@@ -194,6 +209,18 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "#9B9B9B",
   },
+  Buttontext2: {
+    fontSize: 18,
+    textAlign: "center",
+    fontWeight: "bold",
+    color: "#464646",
+  },
+  iconstyle :{
+    fontSize : 25,
+    alignSelf : 'center',
+    marginRight : 10,
+    color: "#4A3939",
+  }
 });
 
 export default RealHomeScreen;

@@ -8,6 +8,9 @@ import Transfer from './src/screens/TransferScreen';
 import CreateAc from './src/screens/CreateAc';
 import TeacherHome from './src/screens/TeacherHome';
 import Signup from './src/screens/Signup';
+import Account  from './src/screens/Account';
+// import Checkin  from './src/screens/Checkin ';
+
 
 const navigator = createStackNavigator(
   {
@@ -17,10 +20,12 @@ const navigator = createStackNavigator(
     Tran : Transfer,
     CreateAc : CreateAc,
     THome : TeacherHome,
-    Signup : Signup
+    Signup : Signup,
+    Acc : Account,
+    // ChecK : Checkin 
   },
   {
-    initialRouteName: 'Home',
+    initialRouteName: 'CreateAc',
     defaultNavigationOptions: {
       title: 'CE COIN',
       headerStyle: {
