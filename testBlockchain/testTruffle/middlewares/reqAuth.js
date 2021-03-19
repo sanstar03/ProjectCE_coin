@@ -9,7 +9,7 @@ module.exports = (req, res, next) => {
   // authorization === 'Bearer laksjdflaksdjasdfklj'
 
   if (!authorization) {
-    console.log(err.message)
+    console.log('Something went wrong .')
     return res.status(401).send({ error: 'You must be logged in.' });
   }
 

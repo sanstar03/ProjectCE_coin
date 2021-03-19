@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useContext} from "react";
 import {
   Text,
   StyleSheet,
@@ -10,42 +10,21 @@ import {
   Alert
 } from "react-native";
 
+import {Context as AuthContext} from "../context/AuthContext"
+
 import axios from 'axios';
 
 const Signup = ({ navigation }) => {
+  const {state,signup} = useContext(AuthContext);
   const [username, setusername] = useState("");
   const [password, setpassword] = useState("");
   const [firstname, setfirstname] = useState("");
   const [lastname, setlastname] = useState("");
   const [studentid, setstudentid] = useState("");
   const [load, setload] = useState("");
+  
 
-  const ssignup = async () => {
-      const user = {
-        "username": username,
-        "password": password,
-        "firstname": firstname,
-        "lastname": lastname,
-        "studentid": studentid,
-      }
-      axios
-        .post("http://127.0.0.1:8000/api/createUser", user)
-        .then((response) => {
-          Alert.alert("Sign up Success ", [
-            { text: "Ok" },
-          ]);
-          console.log(response.data)
-          
-
-        })
-        .catch((e) => {
-          Alert.alert("Error :",e.message, [
-            { text: "Ok" },
-          ]);
-        });
-    
-  };
-
+  
   return (
     <View style={styles.viewStyle}>
       <Text style={styles.text}>CREATE ACCOUNT</Text>
@@ -54,35 +33,42 @@ const Signup = ({ navigation }) => {
           style={styles.InputStyle}
           placeholder="Please Enter ID"
           value={studentid}
-          onChangeText={(studentid) => setstudentid(studentid)}
+          onChangeText={setstudentid}
         />
+        
         <TextInput
           style={styles.InputStyle}
           placeholder="Please Enter First Name"
           value={firstname}
-          onChangeText={(firstname) => setfirstname(firstname)}
+          onChangeText={setfirstname}
         />
         <TextInput
           style={styles.InputStyle}
           placeholder="Please Enter Last Name"
           value={lastname}
-          onChangeText={(lastname) => setlastname(lastname)}
+          onChangeText={setlastname}
         />
         <TextInput
           style={styles.InputStyle}
           placeholder="Please Enter Username"
           value={username}
-          onChangeText={(username) => setusername(username)}
+          onChangeText={setusername}
         />
         <TextInput
           style={styles.InputStyle}
           placeholder="Please Enter Password"
           value={password}
-          onChangeText={(password) => setpassword(password)}
+          onChangeText={setpassword}
         />
+
+        {/* {state.error_message ? <Text>{state.error_message}</Text>:null} */}
       </View>
       <View style={styles.loginScreenButton}>
-        <TouchableOpacity style={styles.buttonStyle} onPress={ssignup}>
+        <TouchableOpacity style={styles.buttonStyle} onPress={() => signup({username,
+        firstname,
+        lastname,
+        password,
+        studentid})}>
           <Text style={styles.Buttontext}>Sign Up</Text>
         </TouchableOpacity>
       </View>

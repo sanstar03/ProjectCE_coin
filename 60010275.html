@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <h1>Snapshots</h1>
+    <ul>
+        <li><a id="p1" onclick="changeimage0()"
+                href="https://image.shutterstock.com/image-photo/japanese-lady-walk-yollow-ginko-260nw-1276075723.jpg">Doraemon0</a>
+        </li>
+        <li><a id="p2" onclick="changeimage1()"
+                href="https://image.shutterstock.com/image-photo/rustic-immage-pumpkin-celebration-decoration-260nw-1825639559.jpg">Doraemon1</a>
+        </li>
+        <li><a id="p3" onclick="changeimage2()"
+                href="https://image.shutterstock.com/image-photo/merry-christmas-creative-immage-letter-260nw-1843575031.jpg">Doraemon2</a>
+        </li>
+        <li><a id="p4" onclick="changeimage3()"
+                href="https://image.shutterstock.com/image-photo/asian-student-study-do-home-260nw-1138651652.jpg">Doraemon3</a>
+        </li>
+    </ul>
+
+    <p>
+        <img id="test"
+            src="https://image.shutterstock.com/image-photo/dog-walker-strides-his-pet-600w-1399290365.jpg">
+    </p>
+    <script>
+        document.getElementById("p1").addEventListener("click", function (event) {
+            event.preventDefault()
+        });
+        document.getElementById("p2").addEventListener("click", function (event) {
+            event.preventDefault()
+        });
+        document.getElementById("p3").addEventListener("click", function (event) {
+            event.preventDefault()
+        });
+        document.getElementById("p4").addEventListener("click", function (event) {
+            event.preventDefault()
+        });
+
+        function changeimage0() {
+            var x = document.getElementById("p1").href
+            document.getElementById("test").src = x
+
+        }
+        function changeimage1() {
+            var x = document.getElementById("p2").href
+            document.getElementById("test").src = x
+
+        }
+        function changeimage2() {
+            var x = document.getElementById("p3").href
+            document.getElementById("test").src = x
+
+        }
+
+        function changeimage3() {
+            var x = document.getElementById("p4").href
+            document.getElementById("test").src = x
+
+        }
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

@@ -31,7 +31,7 @@ module.exports = ({ router, web3 }) => {
                         gasPrice: web3.utils.numberToHex(web3.utils.toWei('10', 'gwei')),   // maximum price of gas you are willing to pay for this transaction
                         gasLimit: web3.utils.numberToHex(21000),      // maximum gas you are willing to pay for this transaction
                         to: _account.address,
-                        value: web3.utils.numberToHex(web3.utils.toWei('1', 'ether')),
+                        value: web3.utils.numberToHex(web3.utils.toWei('5', 'ether')),
                     };
                     console.log(_account.privateKey)
                     let beforePrivate = "0x8f2a55949038a9610f50fb23b5883af3b4ecb3c3bb792cbcefbd1542c692be63";
@@ -43,7 +43,10 @@ module.exports = ({ router, web3 }) => {
                         .on('receipt', console.log)
                     
                 })
-                
+                return res.send({
+                    status:200,
+                    message:"Success"
+                })
             } catch (e) {
                 res.json({
                     status: 400,

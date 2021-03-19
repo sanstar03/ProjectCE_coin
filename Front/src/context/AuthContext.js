@@ -1,50 +1,151 @@
-import { AsyncStorage } from '@react-native-community/async-storage';
-import createDataContext from './createDataContext';
-import trackerApi from '../api/tracker';
-import { navigate } from '../navigationRef';
+import AsyncStorage from '@react-native-community/async-storage';
+import createDataContext from "./createDataContext";
+// import trackerApi from '../api/tracker';
+// import { navigate } from '../navigationRef';
+import axios from 'axios';
+import {navigate} from '../navigationRef';
+import {
+  Text,
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  TextInput,
+  Alert,
+
+} from "react-native";
 
 const authReducer = (state, action) => {
   switch (action.type) {
     case 'add_error':
-      return { ...state, errorMessage: action.payload };
-    case 'signup':
-      return { errorMessage: '', token: action.payload };
+      return {...state,error_message:action.payload};
+    case 'signin':
+      return {error_message:'',token:action.payload};
+    case 'clear_error_message':
+      return {...state,error_message:''};
+    case 'signout':
+      return {token:null,error_message:''};
+    case 'getbal':
+      return {...state,data:action.payload}
+    case 'joinsub':
+      return {...state,data:action.payload}
+    // case 'add_error':
+    //   return { ...state, errorMessage: action.payload };
+    // case 'signup':
+    //   return { errorMessage: '', token: action.payload };
     default:
       return state;
   }
 };
 
-const signup = dispatch => async ({ email, password }) => {
-  try {
-    const response = await trackerApi.post('/signup', { email, password });
-    await AsyncStorage.setItem('token', response.data.token);
-    dispatch({ type: 'signup', payload: response.data.token });
-
-    navigate('TrackList');
-  } catch (err) {
-    dispatch({
-      type: 'add_error',
-      payload: 'Something went wrong with sign up'
-    });
+const signout = dispatch => () => {
+  try{
+   AsyncStorage.removeItem('token');
+    dispatch({type:'signout'});
+    navigate('Si')
+  }catch(e){
+    console.log(e.message)
   }
+}
+
+
+const tryLocalSignin = dispatch => async () =>{
+    const token = await AsyncStorage.getItem('token');
+    if(token){
+      dispatch({type:'signin',payload:token})
+      navigate('Sp')
+    }else{
+      navigate('Si')
+    }
+}
+
+const clearErrorMessage = dispatch => () => {
+  dispatch({type:'clear_error_message'})
+}
+
+const signup = dispatch => async ({ username, password, firstname, lastname, studentid }) => {
+    try {
+      await axios.post("http://127.0.0.1:8000/signup", {
+        username,
+        password,
+        firstname,
+        lastname,
+        studentid,
+      }).then(async res =>{
+      await AsyncStorage.setItem('token',res.data.token);
+      dispatch({type:'signup',payload:res.data.token});
+      // await AsyncStorage.getItem('token')
+      navigate('Si')
+      // console.log(res.data);
+      })
+      
+    } catch (e) {
+      console.log(e.message)
+      
+      dispatch({type:'add_error',payload:'Something went wrong with sign up'});
+      Alert.alert("Error","Something went wrong with sign up",[{text:'Ok'}]);
+    }
+  };
+
+const signin = dispatch => async ({username,password}) => {
+  try {
+    await axios.post("http://127.0.0.1:8000/signin", {
+      username,
+      password
+    }).then(async res => {
+      await AsyncStorage.setItem('token',res.data.token);
+      dispatch({type:'signin',payload:res.data.token});
+      // console.log(res.data.role)
+      navigate('Sp')
+    })}catch(e){
+      console.log(e.message)
+      dispatch({type:'add_error',payload:'Something went wrong with sign in'});
+      Alert.alert("Error","Something went wrong with sign in",[{text:'Ok'}]);
+    }
 };
 
-const signin = dispatch => {
-  return ({ email, password }) => {
-    // Try to signin
-    // Handle success by updating state
-    // Handle failure by showing error message (somehow)
-  };
+const joinsub = dispatch => async ({subjectId,studentid}) => {
+  try {
+    const token = await AsyncStorage.getItem("token");
+    const config = {
+    headers: { Authorization: `Bearer ${token}` },
+      };
+    await axios.post("http://127.0.0.1:8000/joinSubject", token,{
+      subjectId
+    }).then(async res => {
+      dispatch({type:'joinsub',payload:res.data.message});
+    })}catch(e){
+      console.log(e.message)
+      dispatch({type:'add_error',payload:'Something went wrong with Sunject'});
+      Alert.alert("Error","Subject not found.",[{text:'Ok'}]);
+    }
 };
 
-const signout = dispatch => {
-  return () => {
-    // somehow sign out!!!
-  };
-};
+
+// const joinsub = dispatch => async ({subjectid}) => {
+//   try{
+//     awa
+//   }
+// }
+const getbal = dispatch => async () =>{
+  try{
+    const token = await AsyncStorage.getItem('token');
+    const config = {
+          headers: { Authorization: `Bearer ${token}` },
+        };
+    await axios.get("http://127.0.0.1:8000/getBalance",config).then( res => {
+      const result = res.data
+      dispatch({type:'getbal',payload:result});
+      console.log(result)
+    })
+  }catch(e){
+    console.log(e.message)
+  }
+
+}
+
 
 export const { Provider, Context } = createDataContext(
   authReducer,
-  { signin, signout, signup },
-  { token: null, errorMessage: '' }
+  { signin, signout, signup ,clearErrorMessage,tryLocalSignin,getbal,joinsub},
+  { token:null ,error_message:'',data:null}
 );

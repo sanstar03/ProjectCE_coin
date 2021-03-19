@@ -43,6 +43,10 @@ const walletSchema = new Schema({
     type: String,
     required: true,
   },
+  role:{
+    type:Number,
+    default:0
+  }
 });
 //   .add({ firstname: {type:String}}).add({lastname: {type:String}}).add({studentid:{type:Number}});
 //   .add({ lastname: String, require: true, minlenght: 2, maxlenght: 32 })

@@ -1,7 +1,67 @@
-import React from "react";
-import { Text, StyleSheet, View,TouchableOpacity,TextInput } from "react-native";
-
+import React, { useEffect } from "react";
+import { Text, StyleSheet, View,TouchableOpacity,TextInput ,Alert} from "react-native";
+import { useState } from "react";
+import { set } from "mongoose";
+import AsyncStorage from "@react-native-community/async-storage";
+import axios from "axios";
 const TransferScreen = () => {
+
+  const [reciever,setreciever] = useState('');
+  const [amount,setamount] = useState('');
+  const [password,setpassword] = useState('');
+  const [bal,setbal] = useState('')
+
+
+  useEffect(()=>{
+    getBalance()
+  },[])
+
+  const getBalance = async () => {
+    const token = await AsyncStorage.getItem("token");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    axios
+      .get("http://127.0.0.1:8000/getBalance", config)
+      .then((res) => setbal(res.data));
+  };
+
+  const transfer = async () => {
+    const token = await AsyncStorage.getItem("token");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    
+    
+    if (reciever != "" && password != "" && amount != "") {
+      if (bal < amount)
+      {
+        Alert.alert('Error:',"Not enough coin.",[{text:'Ok'}])
+        setreciever('')
+        setamount('')
+        setpassword('')
+      }else{
+        const user = {
+          reciever: reciever,
+          password: password,
+          amount:amount
+          
+      }
+      axios
+        .post("http://127.0.0.1:8000/transfer",user,config)
+        .then(async (response) => {
+          console.log(response.data.message)
+          Alert.alert('Result:',response.data.message,[{text:'Ok'}])
+          setreciever('');
+          setamount('');
+          setpassword('');
+        })
+      }
+    }
+    
+  };
+
+
   const ID = '60010317';
     return (
         <View style={styles.viewStyle}>
@@ -21,7 +81,10 @@ const TransferScreen = () => {
           </View>
 
           <View style={styles.InputflexStyle}>
-         <TextInput style={styles.InputStyle} placeholder="Input Destination ID"/>
+         <TextInput style={styles.InputStyle} placeholder="Input Destination ID" 
+         value = {reciever}
+         onChangeText = {(reciever) => setreciever(reciever)}
+         />
          </View>
 
          <View style={styles.viewStyle1}>
@@ -29,12 +92,25 @@ const TransferScreen = () => {
           </View>
 
           <View style={styles.InputflexStyle}>
-         <TextInput style={styles.InputStyle} placeholder="Input Amount"/>
+         <TextInput style={styles.InputStyle} placeholder="Input Amount"
+         value = {amount}
+         onChangeText = {(amount) => setamount(amount)}/>
+         </View>
+
+         <View style={styles.viewStyle1}>
+         <Text style={styles.text1}>Password</Text>
+          </View>
+
+          <View style={styles.InputflexStyle}>
+         <TextInput maxLength={8}  style={styles.InputStyle} placeholder="Input Password"
+            value = {password}
+            onChangeText = {(password) => setpassword(password)}
+          />
          </View>
 
          <View style={styles.viewStyle3}>
          <View style={styles.loginScreenButton}>
-        <TouchableOpacity style={styles.buttonStyle} onPress={() => props.navigation.navigate('Real')}>
+        <TouchableOpacity style={styles.buttonStyle} onPress={transfer}>
           <Text style={styles.Buttontext}>Next</Text>
           </TouchableOpacity>
            </View>
@@ -49,7 +125,7 @@ const TransferScreen = () => {
       flex: 1,
       flexDirection: 'column',
       justifyContent: 'flex-start',
-      backgroundColor:'#fff'
+      backgroundColor:'#F2F2F2'
     },
     InputStyle:{
       height: 50, 

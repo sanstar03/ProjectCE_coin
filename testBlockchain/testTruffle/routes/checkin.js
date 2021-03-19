@@ -11,9 +11,6 @@ module.exports = ({ router, contract_C }) => {
   router.route("/checkin").get(async (req, res) => {
 
     let cbaddress = "0xFE3B557E8Fb62b89F4916B721be55cEb828dBd73";
-    
-    
-    // console.log(mfk)
     try{
         const temp = mfk.methods.transfer(req.body.address,1);
         let encodeABI = temp.encodeABI();

@@ -81,7 +81,7 @@ const CreateAc = props => {
       flex: 1,
       flexDirection: 'column',
       justifyContent: 'flex-start',
-      backgroundColor:'#fff'
+      backgroundColor:'#F2F2F2'
     },
     InputStyle:{
       height: 50, 
