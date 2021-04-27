@@ -14,7 +14,7 @@ router.post("/joinSubject",async (req, res) => {
       ).catch((e) => {
         return res.send({
           status:400,
-          message:"Sunject not found."
+          message:"Subject not found."
         });
       });
       return res.send({

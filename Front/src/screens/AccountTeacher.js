@@ -27,7 +27,7 @@ const getId = async () => {
       headers: { Authorization: `Bearer ${token}` },
     };
     axios
-      .get("http://127.0.0.1:8000/getId", config)
+      .get("https://cecoinserver.ngrok.io/getId", config)
       .then((res) => setid(res.data));
 };
 
@@ -37,7 +37,7 @@ const ladasaid = async () => {
     headers: { Authorization: `Bearer ${token}` },
   };
   axios
-    .get("http://127.0.0.1:8000/getUser", config)
+    .get("https://cecoinserver.ngrok.io/getUser", config)
     .then((res) => setname(res.data));
 };
 
@@ -56,7 +56,7 @@ const joinsub = async () => {
     subjectId:subid,
   }
   axios
-    .post("http://127.0.0.1:8000/joinSubject", data,config).then(res => {
+    .post("https://cecoinserver.ngrok.io/joinSubject", data,config).then(res => {
       Alert.alert('Result:',res.data.message,[{text:'Ok'}])
       setsubid('')
     })
@@ -183,7 +183,7 @@ const styles = StyleSheet.create({
     marginLeft: 5,
   },
   buttonStyle: {
-    backgroundColor: "#FF4D15",
+    backgroundColor: "#333333",
   },
   buttonStyle2: {
     backgroundColor: "#393433",

@@ -1,43 +1,31 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
-
 const Schema = mongoose.Schema;
 const newactivity = new Schema({
+  activityname: {
+    type: String,
+    required: true,
+  },
+  location:{
+    type: String,
+    required: true,
+    maxlength:32
+  },
   subject: {
     type: String,
     required: true,
-    trim:true,
   },
-  teacher:{
+  date: {
     type: String,
     required: true,
-    trim:true,
-  },
-  name: {
-    type: String,
-    required: true,
-    unique:true,
-    minlength:2,
-    maxlength:32
-  },
-  acttype: {
-    type: Number,
-    required: true,
-    min:1,
-    max:2
   },    
   price: {
     type: Number,
     min:0,
-    max:1,
+    max:10,
+    maxlength:2,
     default:0
   },
-  memberId:[{ 
-    type: String ,
-    validate: (value) => {
-    return validator.isAlphanumeric(value);
-    }
-  }]
 });
 
 

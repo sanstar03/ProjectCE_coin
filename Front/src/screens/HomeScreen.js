@@ -87,6 +87,7 @@ useEffect(() => {
         <TextInput
           style={styles.InputStyle}
           placeholder="Please Enter Password"
+          secureTextEntry = {true}
           value={password}
           onChangeText={(password) => setpassword(password)}
           onChange={() => setpasswordError("")}
@@ -100,7 +101,7 @@ useEffect(() => {
       <View style={styles.row}>
       <Text style={styles.text1}>If you don't have an account</Text> 
       <TouchableOpacity
-      onPress={() => navigate("Su")}
+      onPress={() => navigate("Signup")}
       >
       <Text style={styles.text2}>Create Account</Text>
       </TouchableOpacity>

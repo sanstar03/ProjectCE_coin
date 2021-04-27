@@ -46,8 +46,6 @@ const getbal = dispatch => async () =>{
   }
 
 }
-
-
 export const { Provider, Context } = createDataContext(
   authReducer,
   {getbal},

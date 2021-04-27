@@ -41,7 +41,7 @@ const signout = dispatch => () => {
   try{
    AsyncStorage.removeItem('token');
     dispatch({type:'signout'});
-    navigate('Si')
+    navigate('Home')
   }catch(e){
     console.log(e.message)
   }
@@ -54,7 +54,7 @@ const tryLocalSignin = dispatch => async () =>{
       dispatch({type:'signin',payload:token})
       navigate('Sp')
     }else{
-      navigate('Si')
+      navigate('Home')
     }
 }
 
@@ -64,7 +64,7 @@ const clearErrorMessage = dispatch => () => {
 
 const signup = dispatch => async ({ username, password, firstname, lastname, studentid }) => {
     try {
-      await axios.post("http://127.0.0.1:8000/signup", {
+      await axios.post("https://cecoinserver.ngrok.io/signup", {
         username,
         password,
         firstname,
@@ -74,7 +74,8 @@ const signup = dispatch => async ({ username, password, firstname, lastname, stu
       await AsyncStorage.setItem('token',res.data.token);
       dispatch({type:'signup',payload:res.data.token});
       // await AsyncStorage.getItem('token')
-      navigate('Si')
+      Alert.alert("Result","Successful",[{text:'Ok',onPress:()=>navigate('Home')}]);
+      
       // console.log(res.data);
       })
       
@@ -88,7 +89,7 @@ const signup = dispatch => async ({ username, password, firstname, lastname, stu
 
 const signin = dispatch => async ({username,password}) => {
   try {
-    await axios.post("http://127.0.0.1:8000/signin", {
+    await axios.post("https://cecoinserver.ngrok.io/signin", {
       username,
       password
     }).then(async res => {
@@ -109,7 +110,7 @@ const joinsub = dispatch => async ({subjectId,studentid}) => {
     const config = {
     headers: { Authorization: `Bearer ${token}` },
       };
-    await axios.post("http://127.0.0.1:8000/joinSubject", token,{
+    await axios.post("https://cecoinserver.ngrok.io/joinSubject", token,{
       subjectId
     }).then(async res => {
       dispatch({type:'joinsub',payload:res.data.message});
@@ -132,7 +133,7 @@ const getbal = dispatch => async () =>{
     const config = {
           headers: { Authorization: `Bearer ${token}` },
         };
-    await axios.get("http://127.0.0.1:8000/getBalance",config).then( res => {
+    await axios.get("https://cecoinserver.ngrok.io/getBalance",config).then( res => {
       const result = res.data
       dispatch({type:'getbal',payload:result});
       console.log(result)

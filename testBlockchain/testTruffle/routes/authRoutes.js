@@ -24,11 +24,9 @@ router.post('/signup',async (req,res) => {
         });
         const token = jwt.sign({userId:user._id},'kpkjriosjdjkvndjsia');
         await user.save().then(doc => {
-
             //console.log(doc);     
             //web3.eth.sendTransaction({from: acct1, to:acct2, value: web3.toWei(1, 'ether'), gasLimit: 21000, gasPrice: 20000000000});
             try {
-
                     web3.eth.getTransactionCount("0xFE3B557E8Fb62b89F4916B721be55cEb828dBd73").then(ret => {
                     const rawTx = {
                         nonce: web3.utils.numberToHex(ret),             // Replace by nonce for your account on geth node
@@ -46,7 +44,6 @@ router.post('/signup',async (req,res) => {
                     web3.eth.sendSignedTransaction('0x' + serializedTx.toString('hex'))
                         .on('receipt', console.log)
                     res.send({token})
-                    
                 })
                 
             } catch (e) {
@@ -80,11 +77,9 @@ router.post('/signin',async (req,res) => {
     const { username, password } = req.body;
     console.log(username)
     console.log(password)
-
   if (!username || !password) {
     return res.status(422).send({error:"Must provide username and password"});
   }
-
   const user = await userModel.findOne({ username });
   if (!user) {
     return res.status(404).send({ error:"user not found" });

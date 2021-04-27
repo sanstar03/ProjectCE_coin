@@ -6,12 +6,14 @@ import {
   TouchableOpacity,
   Image,
   TextInput,
-  Alert
+  Alert,
+  ScrollView
 } from "react-native";
+import { AntDesign } from '@expo/vector-icons';
 import AsyncStorage from "@react-native-community/async-storage";
 import axios from "axios";
 import {Context as AuthContext} from '../context/AuthContext'
-
+import {navigate} from '../navigationRef'
 import { sub } from "react-native-reanimated";
 
 const Account = (props) => {
@@ -27,7 +29,7 @@ const getId = async () => {
       headers: { Authorization: `Bearer ${token}` },
     };
     axios
-      .get("http://127.0.0.1:8000/getId", config)
+      .get("https://cecoinserver.ngrok.io/getId", config)
       .then((res) => setid(res.data));
 };
 
@@ -37,7 +39,7 @@ const ladasaid = async () => {
     headers: { Authorization: `Bearer ${token}` },
   };
   axios
-    .get("http://127.0.0.1:8000/getUser", config)
+    .get("https://cecoinserver.ngrok.io/getUser", config)
     .then((res) => setname(res.data));
 };
 
@@ -56,7 +58,7 @@ const joinsub = async () => {
     subjectId:subid,
   }
   axios
-    .post("http://127.0.0.1:8000/joinSubject", data,config).then(res => {
+    .post("https://cecoinserver.ngrok.io/joinSubject", data,config).then(res => {
       Alert.alert('Result:',res.data.message,[{text:'Ok'}])
       setsubid('')
     })
@@ -71,7 +73,9 @@ useEffect (() => {
 
 
   return (
+    
     <View style={styles.viewStyle}>
+      <ScrollView>
       <View style={styles.viewStyle1}>
         <Text style={styles.text}>USER PROFILE</Text>
         <View style={styles.viewStyle3}>
@@ -102,8 +106,17 @@ useEffect (() => {
               </TouchableOpacity>
             </View>
           </View>
+          <View style={styles.line}/>
+        <Text style={styles.text1}>Reward</Text>
+        <TouchableOpacity style={styles.buttonStyle1} onPress={() => navigate('Redd')} >
+          <View style={styles.Rowd} >
+          <Text style={styles.Buttontext3}>See Your Redeemed Reward</Text>
+          <AntDesign name="caretright"  style={styles.iconstyle } />
+          </View>
+          </TouchableOpacity>
         </View>
       </View>
+      </ScrollView>
       <View style={styles.viewStyle2}>
         <View style={styles.LogButton}>
           <TouchableOpacity
@@ -116,6 +129,7 @@ useEffect (() => {
         </View>
       </View>
     </View>
+    
   );
 };
 
@@ -152,6 +166,7 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     margin: 10,
     paddingLeft: 10,
+    backgroundColor: "#fff",
   },
   InputflexStyle: {
     width: "100%",
@@ -171,8 +186,8 @@ const styles = StyleSheet.create({
     fontWeight: "500",
   },
   Buttontext2: {
-    fontSize: 12,
-    margin: 5,
+    fontSize: 14,
+    margin: 10,
     color: "#fff",
     textAlign: "center",
     fontWeight: "500",
@@ -204,11 +219,12 @@ const styles = StyleSheet.create({
     marginLeft: 5,
   },
   buttonStyle: {
-    backgroundColor: "#FF4D15",
+    backgroundColor: "#333333",
   },
   buttonStyle2: {
     backgroundColor: "#393433",
     borderRadius: 6,
+    elevation : 2,
   },
   line: {
     height: 0.5,
@@ -217,6 +233,28 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     marginLeft: 15,
     marginRight: 15,
+  },buttonStyle1:{
+    height : 50 ,
+    margin :5 ,
+    width : '95%',
+    backgroundColor:'#FF4D15',
+    borderRadius: 6,
+    justifyContent : 'center',
+    elevation : 2,
+  },Buttontext3: {
+    fontSize: 16 ,
+    margin: 5,
+    color: "#fff",
+    textAlign: "center",
+    fontWeight : '500',
+  }, Rowd:{
+    flexDirection: 'row',
+    justifyContent : 'center'
+  },iconstyle :{
+    fontSize : 16,
+    alignSelf : 'center',
+    margin : 5,
+    color: "#fff",
   },
 });
 

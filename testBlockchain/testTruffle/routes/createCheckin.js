@@ -13,7 +13,6 @@ router.post("/createCheckin",async (req, res) => {
     subject:req.body.subject,
     code:code
   })
-  
   Checkin.find({
     subject: req.body.subject
   }).then(ret =>{
@@ -37,8 +36,7 @@ router.post("/createCheckin",async (req, res) => {
       })
     }
     }
-  )
-
+  ) 
   });
   
   

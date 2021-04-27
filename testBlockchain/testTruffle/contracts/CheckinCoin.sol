@@ -17,10 +17,9 @@ contract CheckInCoinContract {
         _totalSupply = _total;
         owner = msg.sender;
         balances[msg.sender] = _totalSupply;
-        name = "Checkin Coin";
+        name = "CE-COIN";
         symbol = "C";
     }
-
     event Transfer(address indexed _from, address indexed _to, uint256 _value);
     event Approval(
         address indexed _owner,
@@ -32,7 +31,6 @@ contract CheckInCoinContract {
         require(msg.sender == owner, "You are not owner!!");
         _;
     }
-
     //GETTER
     function getName() public view returns (string memory) {
         return name;
@@ -45,8 +43,6 @@ contract CheckInCoinContract {
     function getDecimals() public view returns (uint8) {
         return decimals;
     }
-
-    //BASIC FUNCTION
     function totalSupply() public view returns (uint256) {
         return _totalSupply;
     }

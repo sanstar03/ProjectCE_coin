@@ -5,8 +5,10 @@ const router = express.Router();
 const reqAuth = require('../middlewares/reqAuth');
 
 router.use(reqAuth)
+
 router.get("/getUser",async (req, res) => {
-        res.send(`${req.user.firstname}`)
+        let user = `${req.user.firstname}`+" "+`${req.user.lastname}`
+        res.send(user)
   });
 
 module.exports = router;

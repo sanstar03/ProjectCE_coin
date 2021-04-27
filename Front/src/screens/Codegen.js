@@ -4,9 +4,7 @@ import {
   StyleSheet,
   View,
   TouchableOpacity,
-  Image,
-  TextInput,
-  Picker,
+  ScrollView,
   Alert
 } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
@@ -23,8 +21,10 @@ const Codegen = (props) => {
   const [code, setCode] = useState("");
   const [data1,setdata1] = useState("");
   const [upDate,setUpdate] = useState(false);
-  let subsend = "";
-  let subdel = "";
+  const [subsend,setsubsend]=useState("");
+  const [subdel,setsubdel] = useState("");
+  // let subsend = "";
+  // let subdel = "";
   const itemsub = [
     // { label: "a", value: "a" },
     // { label: "b", value: "b" },
@@ -36,20 +36,16 @@ const Codegen = (props) => {
     // { label: "h", value: "h" }
   ];
 
-
-
-
   useEffect(() => {
     getSubject()
-
-  },[upDate]);
+  },[upDate,code]);
   const getSubject = async () => {
     const token = await AsyncStorage.getItem("token");
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
     await axios
-      .get("http://127.0.0.1:8000/getSubjectByTeacher", config)
+      .get("https://cecoinserver.ngrok.io/getSubjectByTeacher", config)
       .then((ret) => {
         if (ret.data.length == 1) {
           itemsub.push({ label: ret.data[0].subject, value: ret.data[0].subject })
@@ -58,46 +54,52 @@ const Codegen = (props) => {
           itemsub.push({ label: ret.data[0].subject, value: ret.data[0].subject })
           itemsub.push({ label: ret.data[1].subject, value: ret.data[1].subject })
         }
-        // } else if (ret.data.length == 3) {
-        //   setsub0(ret.data[0].subject);
-        //   setsub1(ret.data[1].subject);
-        //   setsub2(ret.data[2].subject);
-        // } else if (ret.data.length == 4) {
-        //   setsub0(ret.data[0].subject);
-        //   setsub1(ret.data[1].subject);
-        //   setsub2(ret.data[2].subject);
-        //   setsub3(ret.data[3].subject);
-        // } else if (ret.data.length == 5) {
-        //   setsub0(ret.data[0].subject);
-        //   setsub1(ret.data[1].subject);
-        //   setsub2(ret.data[2].subject);
-        //   setsub3(ret.data[3].subject);
-        //   setsub4(ret.data[4].subject);
-        // } else if (ret.data.length == 6) {
-        //   setsub0(ret.data[0].subject);
-        //   setsub1(ret.data[1].subject);
-        //   setsub2(ret.data[2].subject);
-        //   setsub3(ret.data[3].subject);
-        //   setsub4(ret.data[4].subject);
-        //   setsub5(ret.data[5].subject);
-        // } else if (ret.data.length == 7) {
-        //   setsub0(ret.data[0].subject);
-        //   setsub1(ret.data[1].subject);
-        //   setsub2(ret.data[2].subject);
-        //   setsub3(ret.data[3].subject);
-        //   setsub4(ret.data[4].subject);
-        //   setsub5(ret.data[5].subject);
-        //   setsub6(ret.data[6].subject);
-        // } else if (ret.data.length == 8) {
-        //   setsub0(ret.data[0].subject);
-        //   setsub1(ret.data[1].subject);
-        //   setsub2(ret.data[2].subject);
-        //   setsub3(ret.data[3].subject);
-        //   setsub4(ret.data[4].subject);
-        //   setsub5(ret.data[5].subject);
-        //   setsub6(ret.data[6].subject);
-        //   setsub7(ret.data[7].subject);
-        // }
+        else if (ret.data.length == 3) {
+          itemsub.push({ label: ret.data[0].subject, value: ret.data[0].subject })
+          itemsub.push({ label: ret.data[1].subject, value: ret.data[1].subject })
+          itemsub.push({ label: ret.data[2].subject, value: ret.data[2].subject })
+        } 
+        else if (ret.data.length == 4) {
+          itemsub.push({ label: ret.data[0].subject, value: ret.data[0].subject })
+          itemsub.push({ label: ret.data[1].subject, value: ret.data[1].subject })
+          itemsub.push({ label: ret.data[2].subject, value: ret.data[2].subject })
+          itemsub.push({ label: ret.data[3].subject, value: ret.data[3].subject })
+        } 
+        else if (ret.data.length == 5) {
+          itemsub.push({ label: ret.data[0].subject, value: ret.data[0].subject })
+          itemsub.push({ label: ret.data[1].subject, value: ret.data[1].subject })
+          itemsub.push({ label: ret.data[2].subject, value: ret.data[2].subject })
+          itemsub.push({ label: ret.data[3].subject, value: ret.data[3].subject })
+          itemsub.push({ label: ret.data[4].subject, value: ret.data[4].subject })
+        } 
+        else if (ret.data.length == 6) {
+          itemsub.push({ label: ret.data[0].subject, value: ret.data[0].subject })
+          itemsub.push({ label: ret.data[1].subject, value: ret.data[1].subject })
+          itemsub.push({ label: ret.data[2].subject, value: ret.data[2].subject })
+          itemsub.push({ label: ret.data[3].subject, value: ret.data[3].subject })
+          itemsub.push({ label: ret.data[4].subject, value: ret.data[4].subject })
+          itemsub.push({ label: ret.data[5].subject, value: ret.data[5].subject })
+          
+        } 
+        else if (ret.data.length == 7) {
+          itemsub.push({ label: ret.data[0].subject, value: ret.data[0].subject })
+          itemsub.push({ label: ret.data[1].subject, value: ret.data[1].subject })
+          itemsub.push({ label: ret.data[2].subject, value: ret.data[2].subject })
+          itemsub.push({ label: ret.data[3].subject, value: ret.data[3].subject })
+          itemsub.push({ label: ret.data[4].subject, value: ret.data[4].subject })
+          itemsub.push({ label: ret.data[5].subject, value: ret.data[5].subject })
+          itemsub.push({ label: ret.data[6].subject, value: ret.data[6].subject })
+        } 
+        else if (ret.data.length == 8) {
+          itemsub.push({ label: ret.data[0].subject, value: ret.data[0].subject })
+          itemsub.push({ label: ret.data[1].subject, value: ret.data[1].subject })
+          itemsub.push({ label: ret.data[2].subject, value: ret.data[2].subject })
+          itemsub.push({ label: ret.data[3].subject, value: ret.data[3].subject })
+          itemsub.push({ label: ret.data[4].subject, value: ret.data[4].subject })
+          itemsub.push({ label: ret.data[5].subject, value: ret.data[5].subject })
+          itemsub.push({ label: ret.data[6].subject, value: ret.data[6].subject })
+          itemsub.push({ label: ret.data[7].subject, value: ret.data[7].subject })
+        }
       });
   };
 
@@ -108,15 +110,15 @@ const Codegen = (props) => {
     };
       
       await axios
-        .post("http://127.0.0.1:8000/createCheckin",{subject:subsend},config)
+        .post("https://cecoinserver.ngrok.io/createCheckin",{subject:subsend},config)
         .then(async (response) => {
           Alert.alert('Result:',response.data.message,[{text:'Ok'}])
           await setCode(response.data.code)
           await setUpdate(prev => {!prev})
         })
       
-    }
-  
+  }
+
   const deletecheckin = async () => {
       const token = await AsyncStorage.getItem("token");
       const config = {
@@ -124,7 +126,7 @@ const Codegen = (props) => {
       };
         
         await axios
-          .post("http://127.0.0.1:8000/deleteCheckin",{subject:subdel},config)
+          .post("https://cecoinserver.ngrok.io/deleteCheckin",{subject:subdel},config)
           .then(async (response) => {
             Alert.alert('Result:',response.data.message,[{text:'Ok'}])
             await setCode("")
@@ -133,27 +135,28 @@ const Codegen = (props) => {
         
       }
 
-      const showcheckin = async () => {
-        const token = await AsyncStorage.getItem("token");
-        const config = {
-        headers: { Authorization: `Bearer ${token}` },
-        };
-       axios
-        .get("http://127.0.0.1:8000/showCheckin",config,{subject:subdel})
-        .then(async (response) => {
-          // Alert.alert('Result:',response.data.message,[{text:'Ok'}])
-          console.log(response.data.code)
-          await setCode(response.data.code)
-          await setUpdate(prev => {!prev})
-        })
+      // const showcheckin = async () => {
+      //   const token = await AsyncStorage.getItem("token");
+      //   const config = {
+      //   headers: { Authorization: `Bearer ${token}` },
+      //   };
+      //  axios
+      //   .get("https://cecoinserver.ngrok.io/showCheckin",config,{subject:subsend})
+      //   .then(async (response) => {
+      //     // Alert.alert('Result:',response.data.message,[{text:'Ok'}])
+      //     console.log(response.data.code)
+      //     await setCode(response.data.code)
+      //     await setUpdate(prev => {!prev})
+      //   })
           
-        }
+      //   }
   
   
   
 
   return (
     <View style={styles.viewStyle}>
+      
       <View style={styles.viewStyle1}>
         <FontAwesome5 name="coins" style={styles.iconstyle3} />
         <Text style={styles.text}>Generate Code</Text>
@@ -169,12 +172,10 @@ const Codegen = (props) => {
             justifyContent: "flex-start",
           }}
           dropDownStyle={{ backgroundColor: "#fafafa" }}
-          onChangeItem={ item => {
-            subsend = item.value
-            subdel = item.value
-            showcheckin();
-            // createcheckin();
-            
+          onChangeItem={async item => {
+            setsubsend(item.value)
+            setsubdel(item.value)
+            console.log(subsend)
           }}
         />
         
@@ -221,10 +222,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     margin: 15,
     borderRadius: 6,
-    shadowColor: "rgba(0, 0, 0, 0.1)",
-    shadowOpacity: 0.8,
-    shadowRadius: 1,
-    shadowOffset: { width: 2, height: 2 },
+    elevation :2,
   },
   viewStyle4: {
     marginTop: 10,
@@ -320,21 +318,24 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     marginBottom: 15,
     height : 45,
-    justifyContent : 'center'
+    justifyContent : 'center',
+    elevation: 2,
   },
   buttonStyle3:{
     backgroundColor:'red',
     borderRadius: 6,
     marginBottom : 15,
     height : 45,
-    justifyContent : 'center'
+    justifyContent : 'center',
+    elevation: 2,
   },
   buttonStyle4:{
     backgroundColor:'#ACACAC',
     borderRadius: 6,
     marginBottom : 15,
     height : 45,
-    justifyContent : 'center'
+    justifyContent : 'center',
+    
   },
   line: {
     height: 1,

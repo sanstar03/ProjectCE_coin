@@ -11,12 +11,16 @@ const SplashScreen = ( {navigation}) =>{
     const config = {
           headers: { Authorization: `Bearer ${token}` },
         };
-    axios.get('http://127.0.0.1:8000/getRole',config).then(res => 
+    axios.get('https://cecoinserver.ngrok.io/getRole',config).then(res => 
     {
       if(res.data == 0){
         navigate('Real')
-      }else{
+      }else if(res.data ==1){
         navigate('THome')
+      }else if (res.data == 3){
+        navigate('gencode')
+      }else if (res.data == 4){
+        navigate('SHome')
       }
     }
     )
@@ -24,11 +28,11 @@ const SplashScreen = ( {navigation}) =>{
   }
   useEffect(() => {
     setTimeout(() => {
-    getRole()}, 2000)
+    getRole()}, 1000)
   }, [])
   return  (
     <ImageBackground  style={styles.image}
-  source={require('./../../assets/splash.png')}>
+  source={require('./../../assets/load.png')}>
    </ImageBackground>
   );
 };

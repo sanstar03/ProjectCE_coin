@@ -17,8 +17,16 @@ import Activity from "./src/screens/Activitylist";
 import Checkin from "./src/screens/Code";
 import Codegen from "./src/screens/Codegen";
 import AccT from "./src/screens/AccountTeacher";
+import AccS from "./src/screens/StudentActlist"
+import Rclist from "./src/screens/Rewardlist"
+import testt from "./src/screens/test"
+import gencode from "./src/screens/genCode"
+import Speciallist from "./src/screens/SpecialList"
 import { Provider as AuthProvider } from "./src/context/AuthContext";
-
+import SpDetail from "./src/screens/SpecialDetail"
+import Red from "./src/screens/Redeemed"
+import ShopH from "./src/screens/ShopHome"
+import Sp from "./src/screens/Sp"
 // import Checkin  from './src/screens/Checkin ';
 import { setNavigator } from "./src/navigationRef";
 
@@ -36,7 +44,7 @@ const navigator = createStackNavigator(
     // ChecK : Checkin
   },
   {
-    initialRouteName: "Home",
+    initialRouteName: "S",
     defaultNavigationOptions: {
       title: "CE COIN",
       headerStyle: {
@@ -52,26 +60,46 @@ const navigator = createStackNavigator(
 
 const switchNavigator = createSwitchNavigator({
   loginflow: createStackNavigator({
-    Si: HomeScreen,
-    Su: Signup,
+   
+    Home: HomeScreen,
+    Signup: Signup,
   }),
   mainflow: createStackNavigator({
+  
     Sp: Splash,
     Real: RealHomeScreen,
+    Speciallist:Speciallist,
+    SpDetail:SpDetail,
+    Rclist:Rclist,
+    AccS:AccS,
     Checkin: Checkin,
-    CreateAc: CreateAc,
     Real: RealHomeScreen,
     Acc: Account,
-    Ac: Activity,
+    Redd:Red,
     Tran: Transfer,
   }),
   teacherflow: createStackNavigator({
+   
     Sp: Splash,
     THome: TeacherHome,
+    Ac: Activity,
     Codegen: Codegen,
     Tran: Transfer,
     AccT: AccT,
+    CreateAc: CreateAc,
   }),
+  staffFlow:createStackNavigator({
+  
+    Sp: Splash,
+    gencode:gencode
+  }),
+  shopFlow:createStackNavigator({
+   
+    Sp: Splash,
+    SHome:ShopH,
+    Tran: Transfer,
+  })
+  
 });
 
 const App = createAppContainer(switchNavigator);

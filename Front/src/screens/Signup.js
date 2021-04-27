@@ -58,6 +58,7 @@ const Signup = ({ navigation }) => {
           style={styles.InputStyle}
           placeholder="Please Enter Password"
           value={password}
+          secureTextEntry = {true}
           onChangeText={setpassword}
         />
 
@@ -88,10 +89,7 @@ const styles = StyleSheet.create({
   buttonStyle: {
     backgroundColor: "#FF4D15",
     borderRadius: 6,
-    shadowColor: "rgba(0, 0, 0, 0.1)",
-    shadowOpacity: 0.8,
-    shadowRadius: 1,
-    shadowOffset: { width: 2, height: 2 },
+    elevation :2,
   },
   loginScreenButton: {
     width: "40%",

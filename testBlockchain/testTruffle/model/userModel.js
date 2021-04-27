@@ -30,14 +30,18 @@ const walletSchema = new Schema({
     type: Number,
     trim: true,
     unique: true,
+    dropDups: true,
     require:true,
     minlength: 8,
     maxlength: 8,
+    // validate: (value) => {
+    //   return validator.isAlphanumeric(value);
+    // },
   },
   address: {
     type: String,
     // required: true,
-    unique: true,
+    
   },
   privateKey: {
     type: String,
